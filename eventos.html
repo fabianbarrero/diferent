@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Eventos y Celebraciones | DIFERENT ASTORGA</title>
+  <meta name="description" content="Organiza tu evento o celebración especial en DIFERENT Astorga. Bodas, comidas de empresa y reuniones familiares en un ambiente único y con cocina de autor.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ========================================= */
+    /* 1. VARIABLES Y RESET (Para visualización) */
+    /* ========================================= */
+    :root {
+        --gold: #D4AF37;       /* Color dorado */
+        --red: #8B0000;        /* Color rojo vino */
+        --text: #333333;       /* Texto oscuro */
+        --text-light: #f4f4f4; /* Texto claro */
+        --bg-light: #ffffff;
+        --bg-dark: #111111;
+        --bg-light-gray: #f9f9f9;
+        --header-height: 80px;
+        --font-serif: 'Playfair Display', serif;
+        --font-sans: 'Inter', sans-serif;
+    }
+
+    /* Reset básico para que se vea bien sin styles.css externo */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); color: var(--text); line-height: 1.6; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; transition: 0.3s; }
+    ul { list-style: none; }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .text-center { text-align: center; }
+    .section { padding: 5rem 0; }
+    
+    /* Botones Generales */
+    .btn-primary, .btn-secondary, .btn-reservas {
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 4px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+    }
+    .btn-primary { background-color: var(--gold); color: #fff; border: 2px solid var(--gold); }
+    .btn-primary:hover { background-color: transparent; color: var(--gold); }
+    
+    .btn-secondary { background-color: transparent; border: 2px solid var(--red); color: var(--red); }
+    .btn-secondary:hover { background-color: var(--red); color: white; }
+
+    .btn-reservas-xl { padding: 15px 40px; font-size: 1.1rem; margin-top: 20px; }
+
+    /* ========================================= */
+    /* HEADER (Estilos básicos)                  */
+    /* ========================================= */
+    .site-header {
+        position: fixed;
+        top: 0; left: 0; width: 100%;
+        height: var(--header-height);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+    }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+    .logo img { height: 50px; }
+    
+    .nav-toggle {
+        display: flex; flex-direction: column; justify-content: space-between;
+        width: 30px; height: 21px; background: none; border: none; cursor: pointer; z-index: 1002;
+    }
+    .nav-toggle span { display: block; width: 100%; height: 3px; background: var(--text); border-radius: 2px; transition: 0.3s; }
+
+    /* Menú Móvil */
+    .mobile-menu-overlay {
+        position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
+        background: var(--bg-light); z-index: 1001; transition: 0.4s ease;
+        display: flex; align-items: center; justify-content: center;
+    }
+    .mobile-menu-overlay.active { right: 0; }
+    .nav-links li { margin: 20px 0; text-align: center; }
+    .nav-links a { font-size: 1.5rem; font-family: var(--font-serif); font-weight: 700; color: var(--text); }
+    .nav-links a.active { color: var(--gold); }
+
+    /* ========================================= */
+    /* ESTILOS ESPECÍFICOS PARA EVENTOS.HTML     */
+    /* ========================================= */
+
+    /* Hero Section */
+    .events-hero {
+        /* Usamos una imagen de Unsplash para visualizar */
+        background-image: url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=1920&auto=format&fit=crop'); 
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed; /* Efecto Parallax suave */
+        height: 80vh; /* Altura considerable */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        color: #fff;
+        text-align: center;
+        margin-top: var(--header-height);
+    }
+    .events-hero .section-background-overlay {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.6); /* Oscurecer imagen */
+        z-index: 1;
+    }
+    .events-hero .relative-content {
+        position: relative; z-index: 2;
+    }
+    .events-hero h1 {
+        font-family: var(--font-serif);
+        font-size: clamp(2.5rem, 5vw, 4rem); /* Responsive font size */
+        color: var(--gold);
+        margin-bottom: 1.5rem;
+    }
+    .events-hero p.lead {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 2.5rem;
+        font-weight: 300;
+        color: #e0e0e0;
+    }
+
+    /* Sección de Servicios */
+    .service-section { padding: 6rem 0; }
+    .section-title {
+        font-family: var(--font-serif);
+        font-size: 2.5rem;
+        color: var(--text);
+        margin-bottom: 3rem;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .service-grid {
+        display: flex;
+        gap: 4rem;
+        align-items: center;
+    }
+    .service-image { flex: 1; position: relative; }
+    .service-image img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 20px 20px 0px rgba(212, 175, 55, 0.2); /* Sombra decorativa dorada */
+    }
+    .service-info { flex: 1; }
+    .service-info .lead-text { font-size: 1.1rem; color: #555; margin-bottom: 2rem; font-style: italic; }
+    .service-info h3 {
+        font-family: var(--font-serif);
+        color: var(--red);
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 2px solid var(--gold);
+        padding-bottom: 10px;
+        display: inline-block;
+    }
+    .service-info li {
+        font-size: 1.05rem;
+        margin-bottom: 1.2rem;
+        padding-left: 30px;
+        position: relative;
+    }
+    .service-info li::before {
+        content: '✓';
+        color: var(--gold);
+        font-weight: bold;
+        position: absolute;
+        left: 0; top: 0;
+    }
+
+    @media (max-width: 900px) {
+        .service-grid { flex-direction: column; gap: 2rem; }
+        .service-image img { box-shadow: 10px 10px 0px rgba(212, 175, 55, 0.2); }
+    }
+
+    /* Galería */
+    .gallery-section {
+        background-color: var(--bg-dark);
+        padding: 5rem 0;
+        color: #fff;
+    }
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+    }
+    .gallery-item {
+        position: relative;
+        height: 250px;
+        overflow: hidden;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    .gallery-item img {
+        width: 100%; height: 100%; object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.1); }
+    .gallery-item::after {
+        content: '\1F50D'; /* Lupa Icon */
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2rem;
+        opacity: 0;
+        transition: opacity 0.3s;
+        z-index: 2;
+        text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+    .gallery-item:hover::after { opacity: 1; }
+    /* Overlay oscuro al hover */
+    .gallery-item::before {
+        content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.3); opacity: 0; transition: 0.3s; z-index: 1;
+    }
+    .gallery-item:hover::before { opacity: 1; }
+
+    /* Modal */
+    .modal-overlay {
+        display: none;
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background-color: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(5px);
+        z-index: 2000;
+        align-items: center; justify-content: center;
+        opacity: 0; transition: opacity 0.3s ease;
+    }
+    .modal-overlay.show { opacity: 1; } /* Clase para animación */
+
+    .modal-content {
+        position: relative;
+        background: white;
+        padding: 10px;
+        border-radius: 8px;
+        max-width: 90%; max-height: 90%;
+        display: flex; flex-direction: column; align-items: center;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .modal-content img { max-height: 70vh; width: auto; display: block; }
+    
+    .close-btn {
+        position: absolute; top: -40px; right: 0;
+        color: #fff; font-size: 40px; cursor: pointer;
+        line-height: 1;
+    }
+    .share-buttons { margin-top: 15px; display: flex; gap: 10px; }
+    .share-btn {
+        display: flex; align-items: center; gap: 8px;
+        padding: 8px 16px; border-radius: 50px;
+        font-size: 0.9rem; color: white;
+        transition: transform 0.2s;
+    }
+    .share-btn:hover { transform: translateY(-2px); }
+    .share-btn.whatsapp { background-color: #25D366; }
+    .share-btn.facebook { background-color: #1877F2; }
+    .share-btn.instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+
+    /* CTA Section */
+    .cta-section { background-color: var(--bg-light-gray); text-align: center; }
+
+    /* Footer */
+    .site-footer {
+        background-color: var(--bg-dark);
+        color: #aaa;
+        padding: 4rem 0 0;
+        text-align: center;
+    }
+    .footer-main-grid {
+        display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;
+        padding-bottom: 3rem; border-bottom: 1px solid #333;
+    }
+    .footer-col { flex: 1; min-width: 250px; }
+    .footer-brand img { width: 120px; margin-bottom: 1rem; filter: brightness(0) invert(1); } /* Logo blanco */
+    .info-title { color: var(--gold); margin-bottom: 1rem; font-family: var(--font-serif); }
+    .social-box svg { width: 24px; color: #fff; margin: 0 10px; transition: color 0.3s; }
+    .social-box:hover svg { color: var(--gold); }
+    
+    .footer-bottom { padding: 20px 0; font-size: 0.8rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    .footer-bottom a:hover { color: var(--gold); }
+
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="images/log-dif.png" alt="DIFERENT Restaurante">
+      </a>
+      <button id="nav-toggle" class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+    <nav class="nav-wrapper" aria-label="Navegación principal">
+      <ul class="nav-links" id="nav-links">
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="carta.html">Carta</a></li>
+        <li><a href="eventos.html" class="active">Eventos</a></li>
+        <li><a href="index.html#contacto">Contacto</a></li>
+        <li><a href="tel:+34613782082" class="btn-reservas" style="border: 2px solid var(--gold); padding: 10px 30px;">Reservas</a></li>
+      </ul>
+    </nav>
+  </div>
+  
+  <main id="main-content">
+
+    <section id="events-hero" class="events-hero">
+        <div class="section-background-overlay"></div>
+        <div class="container relative-content">
+            <h1 class="reveal-target">Tu Celebración, <span style="color: #fff; font-style: italic;">Nuestra Pasión</span></h1>
+            <p class="lead reveal-target">
+                En DIFERENT, convertimos cualquier evento en una experiencia inolvidable. 
+                Un espacio único, cocina de autor y atención personalizada en el corazón de Astorga.
+            </p>
+            <a href="#contacto-eventos" class="btn-primary btn-reservas-xl reveal-target">Empezar a Diseñar tu Evento</a>
+        </div>
+    </section>
+
+    <section id="servicios" class="section service-section">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title reveal-target">Creamos Momentos Únicos</h2>
+            </div>
+            <div class="service-grid">
+                
+                <div class="service-image reveal-target">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1000&auto=format&fit=crop" alt="Salón de eventos DIFERENT" /> 
+                </div>
+
+                <div class="service-info reveal-target">
+                    <p class="lead-text">
+                        "Nuestro compromiso es la personalización. Cuéntanos tu idea, y nuestro equipo de cocina y sala se encargará de superarla."
+                    </p>
+                    
+                    <h3>Tipos de Eventos</h3>
+                    <ul>
+                        <li><strong>Bodas y Banquetes Íntimos:</strong> El marco perfecto para un día inolvidable.</li>
+                        <li><strong>Comidas de Empresa:</strong> Salas privadas y menús a medida.</li>
+                        <li><strong>Bautizos y Comuniones:</strong> Celebraciones familiares con la mejor gastronomía.</li>
+                        <li><strong>Aniversarios:</strong> Espacios adaptables para cualquier celebración.</li>
+                        <li><strong>Catas Privadas:</strong> Experiencias para amantes del vino.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria" class="section gallery-section">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title" style="color: #fff;">Un Vistazo a Nuestros Eventos</h2>
+                <p style="color: #bbb; max-width: 600px; margin: 0 auto 3rem;">
+                    Imágenes que hablan por sí solas. Inspírate y no olvides compartir tu favorita.
+                </p>
+            </div>
+            
+            <div class="gallery-grid reveal-target">
+                <div class="gallery-item" data-img-src="https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&w=400&q=80" alt="Mesa elegante">
+                </div>
+                <div class="gallery-item" data-img-src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=400&q=80" alt="Cóctel">
+                </div>
+                <div class="gallery-item" data-img-src="https://images.unsplash.com/photo-1550966871-3ed3c47e7421?auto=format&fit=crop&w=800&q=80">
+                    <img src="images/dish4.jpeg" alt="Plato detalle">
+                </div>
+                <div class="gallery-item" data-img-src="https://images.unsplash.com/photo-1510924199351-4e9d94df18a6?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1510924199351-4e9d94df18a6?auto=format&fit=crop&w=400&q=80" alt="Ambiente">
+                </div>
+                <div class="gallery-item" data-img-src="https://images.unsplash.com/photo-1577106263724-2c8e03bfe9cf?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1577106263724-2c8e03bfe9cf?auto=format&fit=crop&w=400&q=80" alt="Chef">
+                </div>
+                <div class="gallery-item" data-img-src="https://images.unsplash.com/photo-1561586522-09418d1a3375?auto=format&fit=crop&w=800&q=80">
+                    <img src="images/dish1.jpeg" alt="Terraza">
+                </div>
+            </div>
+            
+            <p class="text-center" style="margin-top: 2rem; color: var(--gold); font-size: 0.9rem;">
+                *Haz clic en cualquier imagen para verla en detalle.
+            </p>
+        </div>
+    </section>
+
+    <section id="contacto-eventos" class="section cta-section">
+        <div class="container">
+            <h2 class="reveal-target" style="font-family: var(--font-serif); font-size: 2.2rem; color: var(--red);">Menús a la Medida de tus Sueños</h2>
+            <p class="reveal-target" style="max-width: 800px; margin: 1.5rem auto;">
+                Desde opciones tradicionales hasta menús degustación de vanguardia. Adaptamos cada plato 
+                a tus preferencias, incluyendo opciones vegetarianas, veganas y para todo tipo de alérgenos. 
+                <br><strong>La calidad de nuestra cocina de autor, al servicio de tu celebración.</strong>
+            </p>
+            <a href="tel:+34613782082" class="btn-secondary btn-reservas-xl reveal-target">Solicita Presupuesto Personalizado</a>
+        </div>
+    </section>
+    
+    <div id="image-modal" class="modal-overlay">
+        <span class="close-btn">&times;</span>
+        <div class="modal-content">
+            <img id="modal-image" src="" alt="Imagen ampliada de evento">
+            <div class="share-buttons">
+                <a href="#" target="_blank" class="share-btn whatsapp" id="share-whatsapp">
+                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 2A10 10 0 002 12a9.8 9.8 0 001.5 5.5l-1 3.5 3.7-1.2A9.9 9.9 0 0012 22a10 10 0 0010-10A10 10 0 0012 2zm4.7 13.7c-.2.2-.4.3-.7.3s-.5-.1-.7-.3l-1.3-1.6c-.4-.5-.9-1-1.4-1.5-.2-.2-.4-.3-.7-.3h-.3c-.3 0-.5.1-.7.3l-.9 1.1c-.2.2-.4.3-.7.3-.2 0-.4-.1-.5-.3l-1.1-1.3c-.4-.4-.7-.8-1.1-1.2-.4-.5-.8-.9-1.2-1.3l-1.3-1.1c-.2-.2-.3-.4-.3-.7 0-.3.1-.5.3-.7l1.1-.9c.2-.2.3-.4.3-.7 0-.3-.1-.5-.3-.7L7.2 8.4c-.2-.2-.4-.3-.7-.3-.2 0-.4.1-.5.3l-.9 1.1c-.2.2-.4.3-.7.3-.2 0-.4-.1-.5-.3l-1.1-1.3c-.2-.2-.3-.4-.3-.7 0-.3.1-.5.3-.7l1.3-1.6c.2-.2.4-.3.7-.3s.5.1.7.3l1.3 1.6c.4.5.9 1 1.4 1.5.2.2.4.3.7.3h.3c.3 0 .5-.1.7-.3l.9-1.1c.2-.2.4-.3.7-.3.2 0 .4.1.5.3l1.1 1.3c.4.4.7.8 1.1 1.2.4.5.8.9 1.2 1.3l1.3 1.1c.2.2.3.4.3.7 0 .3-.1.5-.3.7L15 15.3c-.2.2-.4.3-.7.3z"/></svg>
+                    WhatsApp
+                </a>
+                <a href="#" target="_blank" class="share-btn facebook" id="share-facebook">
+                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M22 12a10 10 0 10-11.5 9.9v-7h-2.2V12h2.2V9.7c0-2.2 1.3-3.4 3.3-3.4.95 0 1.95.17 1.95.17v2.1h-1.1c-1.07 0-1.4.67-1.4 1.36V12h2.4l-.38 2.9h-2.02v7A10 10 0 0022 12z"/></svg>
+                    Facebook
+                </a>
+                <a href="#" target="_blank" class="share-btn instagram" id="share-instagram">
+                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6.2A3.8 3.8 0 1015.8 12 3.8 3.8 0 0012 8.2zM18.4 6.6a1.1 1.1 0 11-1.1-1.1 1.1 1.1 0 011.1 1.1z"/></svg>
+                    Instagram
+                </a>
+            </div>
+        </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-main-grid">
+      
+      <div class="footer-col footer-brand">
+        <h3 style="font-family: var(--font-serif); color: #fff; margin-bottom:10px;">DIFERENT</h3>
+        <div class="brand-info">
+            <a href="https://goo.gl/maps/TuIDMapsLink" target="_blank" rel="noopener" class="footer-address" style="display:block; margin-bottom:10px;">
+                C. los Sitios, 7B, 24700 Astorga, León
+            </a>
+            <a href="tel:+34613782082" class="footer-phone" style="color: var(--gold); font-weight:bold;">
+                T. 613 78 20 82
+            </a>
+            <div class="footer-socials" style="margin-top: 15px;">
+                <a href="#" aria-label="Facebook" class="social-box">
+                  <svg viewBox="0 0 24 24" class="social-ico"><path fill="currentColor" d="M22 12a10 10 0 10-11.5 9.9v-7h-2.2V12h2.2V9.7c0-2.2 1.3-3.4 3.3-3.4.95 0 1.95.17 1.95.17v2.1h-1.1c-1.07 0-1.4.67-1.4 1.36V12h2.4l-.38 2.9h-2.02v7A10 10 0 0022 12z"/></svg>
+                </a>
+                <a href="#" aria-label="Instagram" class="social-box">
+                  <svg viewBox="0 0 24 24" class="social-ico"><path fill="currentColor" d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6.2A3.8 3.8 0 1015.8 12 3.8 3.8 0 0012 8.2zM18.4 6.6a1.1 1.1 0 11-1.1-1.1 1.1 1.1 0 011.1 1.1z"/></svg>
+                </a>
+            </div>
+        </div>
+      </div>
+
+      <div class="footer-col footer-info">
+        <h4 class="info-title">HORARIO DE COCINA</h4>
+        <p>DE LUNES A SÁBADO</p>
+        <p style="color: #fff;">12:00 A 16:00 <br> 19:00 A 23:00</p>
+        <p style="margin-top: 10px;">DOMINGOS</p>
+        <p style="color: #fff;">12:00 A 16:00</p>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom-wrapper" style="border-top: 1px solid #222; background: #000;">
+        <div class="container footer-bottom">
+        <div class="bottom-left">
+            <a href="#" class="policy-link">POLÍTICA DE PRIVACIDAD</a>
+            <a href="#" style="margin-left: 15px;">POLÍTICA DE COOKIES</a>
+        </div>
+        <div class="bottom-right">
+            <span class="copyright">© <span id="year"></span> DIFERENT ASTORGA</span>
+        </div>
+        </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // 1. ACTUALIZAR AÑO AUTOMÁTICAMENTE
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // 2. MENÚ MÓVIL (Lógica Integrada)
+        const navToggle = document.getElementById('nav-toggle');
+        const mobileMenu = document.getElementById('mobile-menu-overlay');
+        const menuLinks = document.querySelectorAll('.nav-links a');
+
+        navToggle.addEventListener('click', () => {
+            const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+            navToggle.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('active');
+            
+            // Animación simple del icono hamburguesa (opcional, requiere CSS extra para transformar spans)
+        });
+
+        // Cerrar menú al hacer clic en un enlace
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // 3. GALERÍA Y MODAL
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const modal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
+        const closeBtn = document.querySelector('.close-btn');
+        const shareWhatsapp = document.getElementById('share-whatsapp');
+        const shareFacebook = document.getElementById('share-facebook');
+        const shareInstagram = document.getElementById('share-instagram');
+
+        const currentUrl = window.location.href;
+        const shareText = "¡Mira qué lugar tan espectacular para eventos en DIFERENT Astorga!";
+        
+        const openModal = (imgSrc) => {
+            modalImage.src = imgSrc;
+            modal.style.display = 'flex';
+            // Pequeño timeout para permitir que el display:flex renderice antes de cambiar la opacidad
+            setTimeout(() => modal.classList.add('show'), 10);
+            document.body.style.overflow = 'hidden';
+
+            // Configurar Enlaces
+            shareWhatsapp.href = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + currentUrl)}`;
+            shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+            shareInstagram.href = 'https://www.instagram.com/diferentastorga/'; 
+        };
+
+        const closeModal = () => {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }, 300); // Esperar a que termine la transición CSS
+        };
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const imgSrc = this.getAttribute('data-img-src');
+                openModal(imgSrc);
+            });
+        });
+
+        closeBtn.addEventListener('click', closeModal);
+
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    });
+  </script>
+</body>
+</html>
