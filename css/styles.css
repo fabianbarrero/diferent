@@ -11,6 +11,8 @@
   --card: rgba(255, 255, 255, 0.04);
   --container: 1200px;
   --header-height: 80px; 
+  --bg-dark: #121212; /* Fondo oscuro */
+    --bg-light-gray: #f7f7f7; /* Gris muy claro para secciones de CTA */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -38,7 +40,23 @@ body.no-scroll {
     width: 100%;
     height: 100%;
 }
+/* Botones de gran tamaño */
+.btn-reservas-xl {
+  padding: 15px 40px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 50px;
+}
 
+/* Estilo para secciones con fondo claro */
+.bg-light-gray {
+  background-color: var(--bg-light-gray);
+  color: var(--bg-dark); /* Asegurar buen contraste */
+}
+.bg-light-gray h2, .bg-light-gray p {
+  color: var(--bg-dark);
+}
 
 /* Granulado */
 body::before {
@@ -397,3 +415,4 @@ body::before {
       height: 300px;
   }
 }
+
